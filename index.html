@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>For Jyotsana — From Harsh 💖</title>
+  <meta name="description" content="A heartfelt, animated one-page website dedicated to Jyotsana." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <style>
+    :root{
+      --bg1:#fff7fb;
+      --bg2:#f7f6ff;
+      --accent1:#ff6aa9;
+      --accent2:#8a7bff;
+      --muted:#6b6b6b;
+      --card:#ffffff;
+      --shadow:0 12px 34px rgba(23,19,60,0.08);
+      --radius:18px;
+      --glass: rgba(255,255,255,0.6);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;padding:0;font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:linear-gradient(135deg,var(--bg1),var(--bg2));color:#111;scroll-behavior:smooth}
+    img{max-width:100%;height:auto;display:block}
+    a{color:inherit;text-decoration:none}
+    button{font-family:inherit}
+
+    /* Header */
+    header{position:fixed;left:0;right:0;top:0;z-index:60;background:rgba(255,255,255,0.55);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.6)}
+    .nav{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 18px}
+    .brand{font-weight:700}
+    .brand span{background:linear-gradient(45deg,var(--accent1),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .nav .btn{padding:9px 14px;border-radius:999px;background:linear-gradient(45deg,var(--accent1),var(--accent2));color:#fff;text-decoration:none;box-shadow:var(--shadow);border:0}
+
+    /* Hero */
+    .hero{min-height:100svh;padding:120px 18px 80px;display:grid;place-items:center;position:relative;overflow:hidden}
+    .hero-inner{max-width:1200px;width:100%;display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center}
+    .h-title{font-family:Playfair Display,serif;font-size:clamp(34px,6vw,64px);line-height:1.06;margin:0 0 10px}
+    .h-sub{font-size:clamp(15px,2.2vw,18px);color:var(--muted);margin:0 0 22px}
+    .cta{display:flex;gap:12px;align-items:center}
+    .btn-primary{border:none;cursor:pointer;padding:12px 20px;border-radius:999px;background:linear-gradient(45deg,var(--accent1),var(--accent2));color:#fff;font-weight:600;box-shadow:var(--shadow)}
+    .btn-ghost{border:2px solid rgba(0,0,0,.06);background:var(--glass);padding:10px 16px;border-radius:999px;cursor:pointer;font-weight:600}
+
+    .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .hero-card{background:var(--card);border-radius:var(--radius);overflow:hidden;padding:10px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.04)}
+
+    /* Make gallery images consistent: fixed aspect ratio + object-fit cover */
+    .mem-card img, .hero-card img { width:100%; height:220px; object-fit:cover; display:block; border-radius:12px; }
+
+    /* Sparkles */
+    .sparkles{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+    .sparkles span{position:absolute;border-radius:50%;width:8px;height:8px;background:radial-gradient(circle,#fff,rgba(255,255,255,0));opacity:.85;mix-blend-mode:screen}
+
+    /* Sections */
+    section{padding:80px 18px}
+    .container{max-width:1100px;margin:0 auto}
+    .sec-title{font-family:Playfair Display,serif;font-size:clamp(24px,4.8vw,36px);margin:0 0 10px}
+    .sec-sub{color:var(--muted);margin:0 0 22px}
+
+    /* Swiper */
+    .mem-card{background:var(--card);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.03)}
+    .mem-caption{padding:12px 14px;font-weight:600;text-align:center}
+
+    .grid{display:grid;gap:18px}
+    @media(min-width:700px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
+    .card{background:var(--card);border-radius:14px;padding:18px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.04)}
+
+    /* Quote */
+    .quote{border-radius:22px;overflow:hidden;background:#071022;color:#e6f0ff;box-shadow:var(--shadow);position:relative}
+    .quote .inner{padding:64px 20px;text-align:center}
+    .quote h3{font-family:Playfair Display;font-size:clamp(18px,4.5vw,32px);margin:0}
+
+    /* Final */
+    .final{display:grid;gap:20px}
+    @media(min-width:900px){.final{grid-template-columns:1.2fr .8fr;align-items:center}}
+    .letter{display:none;background:var(--card);border-radius:12px;padding:18px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.04)}
+
+    footer{padding:40px 18px;text-align:center;color:var(--muted)}
+
+    /* Three.js canvas container */
+    #threeContainer{width:100%;height:420px;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.04);background:linear-gradient(180deg,#fff8fb,#fff);} 
+
+    /* small niceties */
+    .shine{position:relative;overflow:hidden}
+    .shine::after{content:"";position:absolute;top:-50%;left:-30%;width:30%;height:200%;transform:rotate(25deg);background:linear-gradient(90deg,rgba(255,255,255,0) 0%, rgba(255,255,255,.45) 50%, rgba(255,255,255,0) 100%)}
+    .shine:hover::after{animation:shine 1.1s ease}
+    @keyframes shine{to{left:130%}}
+
+    .reveal{opacity:0;transform:translateY(20px)}
+
+    /* Responsive tweaks */
+    @media(max-width:900px){
+      .hero-inner{grid-template-columns:1fr}
+      .hero-grid{grid-template-columns:1fr 1fr}
+      .nav{padding:10px}
+      #threeContainer{height:320px}
+    }
+    @media(max-width:640px){
+      .hero-grid{grid-template-columns:1fr}
+      .cta{justify-content:center}
+      .h-title{font-size:clamp(26px,7vw,42px)}
+      .mem-card img, .hero-card img { height:180px; }
+      #threeContainer{height:260px}
+      .brand{font-size:.95rem}
+    }
+
+    .hero-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 per row */
+        gap: 14px;
+        }
+
+        .hero-card img {
+        width: 100%;
+        aspect-ratio: 1 / 1; /* force square */
+        object-fit: cover;
+        border-radius: 12px;
+        }
+
+        /* Optional: adjust for small screens */
+        @media(max-width: 640px){
+        .hero-grid {
+            grid-template-columns: 1fr; /* 1 per row on small screens */
+        }
+        }
+    /* accessibility helper: focus visible */
+    :focus{outline:2px dashed var(--accent2);outline-offset:3px}
+    .sr-only{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    /* small prompt if autoplay blocked */
+    #autoplayPrompt{display:none;position:fixed;right:18px;bottom:18px;background:#fff;border-radius:12px;padding:12px 14px;box-shadow:var(--shadow);z-index:140}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+      <div class="brand">For <span>Jyotsana</span> ✨</div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <a class="btn" href="#memories">Memories</a>
+        <a class="btn" href="#final" style="background:transparent;color:var(--accent2);border:2px solid rgba(138,123,255,.12)">Say Thanks</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="sparkles" id="sparkles" aria-hidden="true"></div>
+      <div class="hero-inner container">
+        <div>
+          <h1 id="hero-title" class="h-title">To My Best Friend <span style="color:var(--accent1)">Jyotsana</span> 💖<br/>You make ordinary days feel magical.</h1>
+          <p class="h-sub">Some people come and go, but you stayed. You are not just my best friend — you are family. Thank you for every laugh, every midnight talk, and every little moment that became a memory.</p>
+          <div class="cta" role="region" aria-label="Primary actions">
+            <a href="#memories" class="btn-primary shine">Relive our memories</a>
+            <button class="btn-ghost" id="playAudio" aria-pressed="false">Play a tiny tune ♪</button>
+          </div>
+          <p style="margin-top:10px;color:var(--muted)">With lovely — <strong>Harsh</strong></p>
+
+          <!-- hidden audio: fallback music -->
+          <audio id="tinyTune" preload="auto">
+            <source src="/audio/Sahiba Aditya Rikhari Ringtone Download - MobCup.Com.Co.mp3" type="audio/mpeg" />
+          </audio>
+        </div>
+
+        <!-- Right column: small hero gallery + embedded 3D -->
+        <div style="display:grid;gap:14px">
+          <div class="hero-grid" aria-hidden="false">
+            <div class="hero-card"><img alt="Happy photo" src="/images/WhatsApp Image 2025-08-04 at 7.33.53 PM.jpeg" /></div>
+            <div class="hero-card"><img alt="Laughing friends" src="/images/WhatsApp Image 2025-07-30 at 10.18.51 PM.jpeg" /></div>
+            <div class="hero-card"><img alt="Travel memory" src="/images/WhatsApp Image 2025-07-30 at 11.09.51 PM.jpeg" /></div>
+            <div class="hero-card"><img alt="Sunset memory" src="/images/WhatsApp Image 2025-07-30 at 9.56.51 PM.jpeg" /></div>
+            </div>
+      </div>
+    </section>
+
+    <section id="memories" aria-labelledby="memories-title">
+      <div class="container">
+        <h2 id="memories-title" class="sec-title">Our Little Gallery 📸</h2>
+        <p class="sec-sub">Remember these days? You made them unforgettable. (Replace photos with your own!)</p>
+
+        <div class="swiper mem-swiper reveal" aria-live="polite">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="mem-card">
+                <img src="/images/IMG20250815063805.jpg" alt="Coffee day"/>
+                <div class="mem-caption">Siliserh that turned into a 3-hour heart talk ☕💬</div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="mem-card">
+                <img src="/images/IMG20250815064001.jpg" alt="Sunset walk"/>
+                <div class="mem-caption">Sunset walks and endless laughs 🌅😂</div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="mem-card">
+                <img src="/images/IMG20250815064455.jpg" alt="Trip day"/>
+                <div class="mem-caption">That spontaneous trip we still talk about ✈️✨</div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="mem-card">
+                <img src="/images/IMG20250815064459.jpg" alt="LOL"/>
+                <div class="mem-caption">When we couldn’t stop laughing 😂</div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination" aria-hidden="false"></div>
+          <div class="swiper-button-prev" aria-hidden="true"></div>
+          <div class="swiper-button-next" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="special">
+      <div class="container">
+        <h2 class="sec-title">Why You’re Special 💕</h2>
+        <p class="sec-sub">Little reasons, big feelings.</p>
+
+        <div class="grid cols-3">
+          <div class="card reveal">
+            <div class="chip">🌟 Always makes me laugh</div>
+            <h3>Your smile is a whole mood</h3>
+            <p>You turn bad days into good ones — effortlessly. Tumhari hansi literally therapy hai 😄</p>
+          </div>
+          <div class="card reveal">
+            <div class="chip">🎧 Listens — always</div>
+            <h3>My no-judgement zone</h3>
+            <p>Thank you for hearing me out — not just my words, but my silence too.</p>
+          </div>
+          <div class="card reveal">
+            <div class="chip">🌍 Feels like family</div>
+            <h3>Home isn’t a place</h3>
+            <p>It’s a person. And for me, that’s you. Bas wahi kahna tha. 🫶</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="quote-title">
+      <div class="container">
+        <div class="quote" role="region" aria-label="Quote">
+          <canvas id="stars" style="width:100%;height:220px;display:block"></canvas>
+          <div class="inner">
+            <h3 id="quote-title">“Best friends are like stars — you don’t always see them, but you know they’re always there.” ✨</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="final" aria-labelledby="final-title">
+      <div class="container final">
+        <div>
+          <h2 id="final-title" class="sec-title">A Small Thank You ❤️</h2>
+          <p class="sec-sub">This page is just my way of saying: I’m grateful for you — today and always.</p>
+          <p>Click the button for a tiny surprise. Phir bolna, “yeh cute tha!” 😌</p>
+          <button class="btn-primary shine" id="surpriseBtn">Click for a surprise 🎁</button>
+
+          <div class="letter" id="letter" aria-live="polite">
+            <h3 style="margin-top:0">Open Letter to Jyotsana</h3>
+            <p>Thank you for being my constant — the person I run to with good news first and bad news faster. May our inside jokes never end, our selfies always be cute, and our friendship stay this effortless forever. You’re one of the best parts of my life. 💫</p>
+            <p style="margin-top:8px;font-weight:600">— From, Harsh</p>
+          </div>
+        </div>
+        <div>
+          <div class="heart" style="display:flex;align-items:center;justify-content:center;height:100%">
+            <div id="heartLottieWrap" style="width:160px;height:160px;border-radius:99px;display:grid;place-items:center"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Made with ❤ by your best friend — <strong>Harsh</strong>.
+  </footer>
+
+  <!-- small prompt shown only if autoplay blocked -->
+  <div id="autoplayPrompt" role="status" aria-live="polite">
+    Audio blocked by browser. Tap anywhere to enable sound.
+  </div>
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.160.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+<script src="https://unpkg.com/three@0.160.0/examples/js/controls/OrbitControls.js"></script>
+  <script>
+    /* ========= 1) Sparkles generator (subtle) ========= */
+    const sparklesEl = document.getElementById('sparkles');
+    function makeSparkle(){
+      const s = document.createElement('span');
+      const size = Math.random()*8 + 4;
+      s.style.width = s.style.height = size + 'px';
+      s.style.left = (Math.random()*100) + '%';
+      s.style.top = (Math.random()*90) + '%';
+      s.style.opacity = 0.9;
+      s.style.transform = `translateY(${Math.random()*6 - 3}px)`;
+      sparklesEl.appendChild(s);
+      gsap.fromTo(s,{scale:0,opacity:0},{scale:1,opacity:1,duration:0.9, yoyo:true, repeat:1, ease:'sine.inOut', onComplete:()=>s.remove()});
+    }
+    setInterval(makeSparkle, 600);
+
+    /* ========= 2) Swiper init ========= */
+    const swiper = new Swiper('.mem-swiper', {
+      spaceBetween: 18,
+      centeredSlides: true,
+      loop: true,
+      grabCursor: true,
+      autoplay: { delay: 2800, disableOnInteraction: false },
+      pagination: { el: '.swiper-pagination', clickable: true },
+      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+      slidesPerView: 1,
+      breakpoints: { 700: { slidesPerView: 2 }, 1000: { slidesPerView: 3 } }
+    });
+
+    /* ========= 3) GSAP reveal & micro-animations ========= */
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.reveal').forEach((el,i)=>{
+      gsap.fromTo(el,{opacity:0,y:24},{opacity:1,y:0,duration:.8,delay: i*0.06, ease:'power3.out', scrollTrigger:{trigger:el, start:'top 85%'}});
+    });
+
+    gsap.from('.nav',{y:-30,opacity:0,duration:.9,ease:'power3.out'});
+    gsap.to('.btn-primary',{scale:1.03,repeat:-1,yoyo:true,duration:1.8,transformOrigin:'50% 50%',ease:'sine.inOut'});
+
+    // Hero headline flourish
+    gsap.from('.h-title',{opacity:0,y:24,duration:1.1,ease:'power3.out',delay:0.05});
+    gsap.from('.h-sub',{opacity:0,y:18,duration:0.9,ease:'power3.out',delay:0.18});
+
+    /* ========= 4) Starry canvas (quote) ========= */
+    (function initStarsCanvas(){
+      const canvas = document.getElementById('stars');
+      const ctx = canvas.getContext('2d');
+      function sizeCanvas(){ canvas.width = canvas.clientWidth; canvas.height = canvas.clientHeight; }
+      let stars = [];
+      function initStars(){ stars = Array.from({length:80}, ()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.6+.3,a:Math.random()})); }
+      function draw(){ ctx.clearRect(0,0,canvas.width,canvas.height); for(const s of stars){ s.a += (Math.random()*.14 - .07); const alpha = .25 + Math.abs(Math.sin(s.a))*.75; ctx.fillStyle = `rgba(255,255,255,${alpha})`; ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill(); } requestAnimationFrame(draw); }
+      const ro = new ResizeObserver(()=>{ sizeCanvas(); initStars(); }); ro.observe(canvas); sizeCanvas(); initStars(); draw();
+    })();
+
+    /* ========= 5) Surprise confetti + letter ========= */
+    const surpriseBtn = document.getElementById('surpriseBtn');
+    const letter = document.getElementById('letter');
+    let revealed = false;
+    surpriseBtn.addEventListener('click', ()=>{
+      confetti({ particleCount: 180, spread: 90, origin: { y: 0.6 } });
+      if(!revealed){
+        revealed = true;
+        letter.style.display = 'block';
+        gsap.fromTo(letter,{opacity:0,y:18},{opacity:1,y:0,duration:.8,ease:'power3.out'});
+      } else {
+        confetti({ particleCount: 60, spread: 40, origin: { y:0.7}});
+      }
+    });
+
+    /* ========= 6) Audio autoplay + TTS greeting ========= */
+    const tune = document.getElementById('tinyTune');
+    const playBtn = document.getElementById('playAudio');
+    const autoplayPrompt = document.getElementById('autoplayPrompt');
+
+    async function tryPlayAudio(){
+      try{
+        // Try WebSpeech greeting first (non-blocking)
+        if('speechSynthesis' in window){
+          const msg = new SpeechSynthesisUtterance("A small surprise from Harsh. Hello Jyotsana!");
+          msg.rate = 0.95;
+          window.speechSynthesis.cancel();
+          window.speechSynthesis.speak(msg);
+        }
+        // Try to play music
+        await tune.play();
+        playBtn.textContent = 'Playing ♫';
+        playBtn.setAttribute('aria-pressed','true');
+        setTimeout(()=>{ playBtn.textContent = 'Play a tiny tune ♪'; playBtn.setAttribute('aria-pressed','false'); }, 3200);
+        autoplayPrompt.style.display = 'none';
+      }catch(err){
+        // Browser blocked autoplay - show a small prompt
+        autoplayPrompt.style.display = 'block';
+      }
+    }
+
+    // attempt to autoplay on load
+    window.addEventListener('load', ()=>{
+      tryPlayAudio();
+    });
+
+    // Play toggle
+    playBtn.addEventListener('click', async ()=>{
+      try{
+        if(tune.paused){ await tune.play(); playBtn.textContent='Playing ♫'; }
+        else { tune.pause(); tune.currentTime = 0; playBtn.textContent='Play a tiny tune ♪'; }
+      }catch(e){
+        // if blocked, request user gesture
+        autoplayPrompt.style.display = 'block';
+      }
+    });
+
+    // If user taps the prompt or anywhere, try again (user gesture)
+    document.addEventListener('click', function once(){ tryPlayAudio(); document.removeEventListener('click', once); });
+
+    /* ========= 7) Embedded Three.js heart (improved) ========= */
+    (function initThreeJS(){
+      const container = document.getElementById('threeContainer');
+      let renderer, scene, camera, heartMesh, controls, particles = [], animId;
+      const W = () => container.clientWidth;
+      const H = () => container.clientHeight;
+
+      function createHeartShape(){
+        const x = 0, y = 0;
+        const heartShape = new THREE.Shape();
+        heartShape.moveTo(x, y + 0.6);
+        heartShape.bezierCurveTo(x, y + 0.6, x - 1.2, y - 0.6, x - 2.2, y - 2.2);
+        heartShape.bezierCurveTo(x - 3.2, y - 3.6, x - 1.2, y - 5.0, x, y - 3.0);
+        heartShape.bezierCurveTo(x + 1.2, y - 5.0, x + 3.2, y - 3.6, x + 2.2, y - 2.2);
+        heartShape.bezierCurveTo(x + 1.2, y - 0.6, x, y + 0.6, x, y + 0.6);
+        return heartShape;
+      }
+
+      function setup(){
+        // cleanup prior
+        if(renderer){ renderer.forceContextLoss(); renderer.domElement.remove(); cancelAnimationFrame(animId); renderer = null; }
+
+        renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setSize(W(), H());
+        container.appendChild(renderer.domElement);
+
+        scene = new THREE.Scene();
+        // subtle gradient-ish background using fog and hemi light
+        scene.background = new THREE.Color(0xfff8fb);
+        scene.fog = new THREE.FogExp2(0xfff8fb, 0.004);
+
+        camera = new THREE.PerspectiveCamera(45, W()/H(), 0.1, 1000);
+        camera.position.set(0, 1.6, 6);
+
+        // Lights
+        const hemi = new THREE.HemisphereLight(0xffeef6, 0x220022, 0.8);
+        scene.add(hemi);
+        const dir = new THREE.DirectionalLight(0xffc0e6, 0.9);
+        dir.position.set(5,10,7);
+        dir.castShadow = false;
+        scene.add(dir);
+        const rimLight = new THREE.PointLight(0xff9ac1, 0.45, 30);
+        rimLight.position.set(-6,2,6);
+        scene.add(rimLight);
+
+        // Heart geometry
+        const heartShape = createHeartShape();
+        const extrudeSettings = { depth: 0.9, bevelEnabled: true, bevelThickness: 0.12, bevelSize: 0.22, bevelSegments: 6 };
+        const geo = new THREE.ExtrudeGeometry(heartShape, extrudeSettings);
+        geo.center();
+
+        // main material with subtle sheen
+        const mat = new THREE.MeshStandardMaterial({color:0xff6aa9, metalness:0.18, roughness:0.35, emissive:0x200011, emissiveIntensity:0.1});
+        heartMesh = new THREE.Mesh(geo, mat);
+        heartMesh.rotation.x = -0.4;
+        heartMesh.rotation.z = 0.05;
+        heartMesh.scale.set(0.84,0.84,0.84);
+        scene.add(heartMesh);
+
+        // rim halo (soft look)
+        const rimMat = new THREE.MeshBasicMaterial({color:0xff9ac1, transparent:true, opacity:0.12});
+        const rim = new THREE.Mesh(geo.clone(), rimMat);
+        rim.scale.set(1.06,1.06,1.06);
+        rim.position.z = -0.02;
+        scene.add(rim);
+
+        // small floating particle system (points)
+        const particlesGeo = new THREE.BufferGeometry();
+        const particleCount = 120;
+        const positions = new Float32Array(particleCount * 3);
+        for(let i=0;i<particleCount;i++){
+          positions[i*3+0] = (Math.random()-0.5) * 8;
+          positions[i*3+1] = (Math.random()-0.2) * 4;
+          positions[i*3+2] = (Math.random()-0.5) * 6;
+        }
+        particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const pMat = new THREE.PointsMaterial({size: 0.06, color: 0xffc7df, transparent:true, opacity:0.85});
+        const points = new THREE.Points(particlesGeo, pMat);
+        scene.add(points);
+
+        // controls
+        controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.enablePan = false;
+        controls.minDistance = 3;
+        controls.maxDistance = 12;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 0.45;
+
+        // subtle responsive handling
+        window.addEventListener('resize', onResize);
+
+        // animate
+        let t = 0;
+        function animate(){
+          animId = requestAnimationFrame(animate);
+          t += 0.01;
+          heartMesh.rotation.y += 0.01;
+          heartMesh.position.y = Math.sin(t) * 0.04; // float
+          // pulse scale subtly
+          const pulse = 1 + Math.sin(t*1.6) * 0.008;
+          heartMesh.scale.set(0.84*pulse,0.84*pulse,0.84*pulse);
+          controls.update();
+
+          // animate particles positions a bit (slow drift)
+          const pos = particlesGeo.attributes.position.array;
+          for(let i=0;i<pos.length;i+=3){
+            pos[i+1] += Math.sin(t*0.5 + i)*0.0008;
+            if(pos[i+1] > 6) pos[i+1] = -2.5;
+          }
+          particlesGeo.attributes.position.needsUpdate = true;
+
+          renderer.render(scene, camera);
+        }
+        animate();
+      }
+
+      function onResize(){
+        if(!renderer) return;
+        renderer.setSize(W(), H());
+        camera.aspect = W()/H();
+        camera.updateProjectionMatrix();
+      }
+
+      // init
+      setup();
+
+      // cleanup on page unload
+      window.addEventListener('unload', ()=>{ if(renderer){ renderer.forceContextLoss(); renderer.domElement.remove(); renderer = null; } });
+    })();
+
+    /* ========= 8) Lottie heart (decorative) ========= */
+    (function mountLottie(){
+      const wrap = document.getElementById('heartLottieWrap');
+      wrap.innerHTML = '<lottie-player src="https://lottie.host/1a9b4691-ec36-4f57-9d2a-8a6f2a3cf7a7/Sg3fWQWl1W.json" background="transparent" speed="1" loop autoplay style="width:140px;height:140px"></lottie-player>';
+    })();
+
+    /* ========= small accessibility tweak: enable focus outlines when tabbing ========= */
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Tab'){ document.documentElement.classList.add('show-focus'); }});
+  </script>
+</body>
+</html>
